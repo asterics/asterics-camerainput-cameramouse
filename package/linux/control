@@ -1,0 +1,10 @@
+Package: asterics-application
+Version: 0.1
+Section: unknown
+Maintainer: Asterics Foundation
+Priority: optional
+Architecture: all
+Homepage: https://github.com/asterics/AsTeRICS
+Provides: asterics-application
+Description: AsTeRICS Runtime Environment (ARE) - http://www.asterics.org
+Recommends: oracle-java8-installer, libttspico-utils, libhidapi-libusb0, libudev1
