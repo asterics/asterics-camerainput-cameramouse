@@ -12,7 +12,7 @@ If you want to create deployment files (.exe, .deb,...), you must have installed
 
 # Demos / Examples
 
-You can check some [demos](http://asterics.github.io/AsTeRICS/demos.html) and [asterics solution example repositories](https://github.com/asterics?utf8=%E2%9C%93&q=topic%3Aexample&type=&language=).
+You can try some (other) [demos](http://asterics.github.io/AsTeRICS/demos.html) and [asterics solution example repositories](https://github.com/asterics?utf8=%E2%9C%93&q=topic%3Aexample&type=&language=) here.
 
 # Run project
 
