@@ -99,6 +99,7 @@ APE automatically searches for an ARE at the following locations:
 You can also set ARE.baseURI manually, either in the file ```APE.properties``` or within an ant call, e.g. 
 
 ```ant -DARE.baseURI=<path to ARE> run```
+  
 ```ant -DARE.baseURI=D:/AsTeRICS/AsTeRICS/bin/ARE/ run```
  
 # License
