@@ -96,7 +96,10 @@ APE automatically searches for an ARE at the following locations:
 3. ```../../AsTeRICS/bin/ARE``` (if it's an AT solution folder structure)
 4. ```C:/Program Files (x86)/AsTeRICS/ARE/``` (if there is an Asterics installation on windows)
 
-You can also set ARE.baseURI manually, either in the file ```APE.properties``` or within an ant call, e.g. ```ant -DARE.baseURI=<path to ARE> run```
+You can also set ARE.baseURI manually, either in the file ```APE.properties``` or within an ant call, e.g. 
+
+```ant -DARE.baseURI=<path to ARE> run```
+```ant -DARE.baseURI=D:/AsTeRICS/AsTeRICS/bin/ARE/ run```
  
 # License
 
