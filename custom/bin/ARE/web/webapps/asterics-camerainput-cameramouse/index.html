@@ -18,13 +18,51 @@
     <![endif]-->
 
 	<script type="text/javascript">
+		var modelFilePathOnWebserver='webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs';
 		/*
 		Deploy model file which is hosted on a webserver, apply settings (camera device, speed) and start the model.
 		*/		
 		function applyAndStart() {
+			var propertyMap=initPropertyMap();
+			//Here is an example of how you could store a file from the webserver to the ARE/data folder.
+			/*
+			storeFileFromWebserverOnARE('webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs', 'testModel/testModel.acs', Empty_successCallback);
+			*/
+
+			//Now let's deploy the model file, apply all settings the user selected and start the model.
+			deployModelFromWebserverApplySettingsAndStartModel(modelFilePathOnWebserver,propertyMap);
+		}
+		
+		function saveAsAutostart() {
+			var propertyMap=initPropertyMap();
+			
+			deployModelFromWebserver(modelFilePathOnWebserver,
+					function() {
+						setRuntimeComponentProperties(			
+							function (data, HTTPstatus){
+								if(JSON.parse(data).length == 0) {
+									var errorMsg="The property settings could not be applied.";
+									alert(errorMsg);
+								}
+								console.log('The following properties could be set: '+data);
+								
+								downloadDeployedModel(function(modelInXML,HTTPstatus) {
+									console.log('downloaded Model: '+modelInXML);
+									var xmlDoc = $.parseXML( modelInXML ),
+									  $xml = $( xmlDoc ), modelVersion=$xml.find("modelVersion");
+									
+									$xml.find("model").removeAttr("modelVersion");
+									$xml.find("model").attr("version",modelVersion);
+									storeModel(alert('Successfully saved settings as autostart!'),errorCallback,'autostart.acs',xmlToString(document.createElement($xml)));
+								},errorCallback);
+							}, 
+							errorCallback, propertyMap);
+					});
+		}
+		
+		function initPropertyMap() {
 			var cameraSource = document.getElementById("cameraSource");
 			var cameraSourceIdx = cameraSource.options[cameraSource.selectedIndex].value;
-			var speed = document.getElementById("speed").value;
 		
 			//The JSON object must be sent as JSON string, the keys and values must be Strings as well.
 			var propertyMap=JSON.stringify(
@@ -33,19 +71,38 @@
 					"cameraSelection":String(cameraSourceIdx)
 				},
 				"Slider.1":{
-				  "default":String(speed)
+				  "default":String(document.getElementById("speed").value)
+				},
+				"AveragerX":{
+					  "bufferSize":String(document.getElementById("averager").value)
+				},
+				"AveragerY":{
+					  "bufferSize":String(document.getElementById("averager").value)
+				},
+				"Deadzone.1":{
+					  "radius":String(document.getElementById("deadzone").value)
+				},
+				"DwellTimer":{
+					  "timePeriod":String(document.getElementById("dwelltime").value)
 				}
 			});
 			console.log("Setting model properties:"+propertyMap);
-			
-			//Here is an example of how you could store a file from the webserver to the ARE/data folder.
-			/*
-			storeFileFromWebserverOnARE('webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs', 'testModel/testModel.acs', Empty_successCallback);
-			*/
-
-			//Now let's deploy the model file, apply all settings the user selected and start the model.
-			deployModelFromWebserverApplySettingsAndStartModel('webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs',propertyMap);
+			return propertyMap;
 		}
+		
+		function xmlToString(xmlData) { 
+
+		    var xmlString;
+		    //IE
+		    if (window.ActiveXObject){
+		        xmlString = xmlData.xml;
+		    }
+		    // code for Mozilla, Firefox, Opera, etc.
+		    else{
+		        xmlString = (new XMLSerializer()).serializeToString(xmlData);
+		    }
+		    return xmlString;
+		}		
 	</script>
 
     <title>AsTeRICS Camera Mouse</title>
@@ -67,7 +124,6 @@
 
 			<div>
 			<img src="img/facetrackerLK-videoframe.png" alt="Video frame showing face with tracked nose and chin"/>
-			<img src="img/facetrackermouse.PNG" alt="GUI with buttons and slider"/>
 			</div>
 			<p>
 					<label for="cameraSource">Choose Camera: </label>
@@ -76,11 +132,23 @@
 					  <option value="1">Second camera</option>
 					  <option value="2">Third camera</option>
 					  <option value="3">Fourth camera</option>
-					</select>			
+					</select>
+			<p>
 					<label for="speed">Mouse Speed: </label>
-					<input title="Mouse speed" type="range" id="speed" value="50">
-			<br>
+					<input title="Mouse speed" type="range" id="speed" value="50" min="1" max="100">
+			<p>
+					<label for="averager">Moving Average Values: </label>
+					<input title="Moving Average Values" type="range" id="averager" value="5" min="1" max="50">
+			<p>
+					<label for="deadzone">Movement Deadzone: </label>
+					<input title="Movement Deadzone" type="range" id="deadzone" value="3" min="1" max="20">
+			<p>
+					<label for="dwelltime">Dwell Time [ms]: </label>
+					<input title="Dwell Time [ms]" type="range" id="dwelltime" value="500" min="100" max="5000">	
+			<p>
 			<button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Apply and Start Model </button>
+<!--	 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
+-->
 			<p>
 			<h2>Requirements</h2>
 			<ul>
