@@ -24,13 +24,39 @@
 		*/		
 		function applyAndStart() {
 			var propertyMap=initPropertyMap();
+			
+			loadFileFromWebServer(modelFilePathOnWebserver, function(modelInXML){
+				var xmlDoc = $.parseXML( modelInXML );
+				var commandPanel=xmlDoc.getElementsByTagName('component');
+				
+				for(var i=0;i<commandPanel.length; i++) {
+					var currentValue=commandPanel.item(i);
+					if(currentValue.attributes.getNamedItem('id').textContent === "CommandPanel") {
+						
+						var commandPanelProperties=currentValue.getElementsByTagName('property');
+						
+						for(var j=0;j<commandPanelProperties.length; j++) {
+							var curProperty=commandPanelProperties.item(j);
+							if(curProperty.getAttribute("name")==="cellText1") {
+								curProperty.setAttribute("value","Neuer Text");
+								console.log("Setting cellText1");
+							}
+						}					
+					} 
+				}
+						
+	
+				console.log("xmlDoc: "+xmlToString(xmlDoc));
+				
+			});
+			
 			//Here is an example of how you could store a file from the webserver to the ARE/data folder.
 			/*
 			storeFileFromWebserverOnARE('webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs', 'testModel/testModel.acs', Empty_successCallback);
 			*/
 
 			//Now let's deploy the model file, apply all settings the user selected and start the model.
-			deployModelFromWebserverApplySettingsAndStartModel(modelFilePathOnWebserver,propertyMap);
+			//deployModelFromWebserverApplySettingsAndStartModel(modelFilePathOnWebserver,propertyMap);
 		}
 		
 		function saveAsAutostart() {
@@ -53,7 +79,9 @@
 									
 									$xml.find("model").removeAttr("modelVersion");
 									$xml.find("model").attr("version",modelVersion);
-									storeModel(alert('Successfully saved settings as autostart!'),errorCallback,'autostart.acs',xmlToString(document.createElement($xml)));
+									$xml.find("CommandPanel").attr("cellText1","Scheisse wie geil");
+									console.log($xml);
+									//storeModel(alert('Successfully saved settings as autostart!'),errorCallback,'autostart.acs',xmlToString(document.createElement($xml)));
 								},errorCallback);
 							}, 
 							errorCallback, propertyMap);
@@ -290,8 +318,8 @@
 			<input id="unlockPattern" type="text" placeholder="1,2,4,3" defaultValue="1,2,4,3">
 			<p>
 			<button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Apply and Start Model </button>
-<!--	 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
--->
+	 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
+
 			<p>
 			<h2>Requirements</h2>
 			<ul>
