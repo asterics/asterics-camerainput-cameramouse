@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="../startpage/styles/main.css">
+    
 
 	<!-- provided from AsTeRICS 3.0 -->
 	<script type="text/javascript" src="../startpage/lib/jquery-3.2.1.min.js"></script>
@@ -293,6 +294,25 @@
 			<div>
 			<img src="img/facetrackerLK-videoframe.png" alt="Video frame showing face with tracked nose and chin"/>
 			</div>
+			<h2>Requirements</h2>
+			<ul>
+				<li>Integrated Webcam or USB camera</li>
+				<li><a href="https://github.com/asterics/AsTeRICS/releases/tag/v3.0" target="_blank">AsTeRICS 3.0</a> installed and ARE running</li>
+				<li>OS: Windows, Linux (incl. RPi), Mac OSX</li>
+			</ul>
+			<h2>Start Model</h2>							
+				<ol>
+					<li>Start AsTeRICS Runtime Environment (ARE)</li>
+					<ul>
+						<li>Windows: C:\Program Files (x86)\AsTeRICS\ARE\start.bat</li>
+						<li>Linux / Mac OSX: asterics-are</li>
+					</ul>
+					<li><button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Apply and Start Model </button></li>
+				</ol>				
+				
+				You can adjust the many settings below and save them as default for the next ARE start.
+				<p>
+		 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
 			<h3>General Settings</h3>
 			<p>
 			<label for="cameraSource">Choose Camera: </label>
@@ -304,7 +324,7 @@
 			</select>
 			<p>
 			<label for="speed">Mouse Speed: </label>
-			<input title="Mouse speed" type="range" id="speed" value="50" min="1" max="100">
+			<input title="Mouse speed" type="range" id="speed" value="60" min="1" max="100">
 			<p>
 			<label for="averager">Moving Average Values: </label>
 			<input title="Moving Average Values" type="range" id="averager" value="5" min="1" max="50">
@@ -463,14 +483,7 @@
 			<p>
 			<button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Apply and Start Model </button>
 	 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
-
 			<p>
-			<h2>Requirements</h2>
-			<ul>
-				<li>Integrated Webcam or USB camera</li>
-				<li><a href="https://github.com/asterics/AsTeRICS/releases/tag/v3.0" target="_blank">AsTeRICS 3.0</a> installed and ARE running</li>
-				<li>OS: Windows, Linux (incl. RPi), Mac OSX</li>
-			</ul>
 			<h2>Major Plugins</h2>
 			<ul>
 				<li><a target="_blank" href="http://asterics.github.io/AsTeRICS/webapps/WebACS/help/index.html?plugins&sensors/XFacetrackerLK.htm">XFacetrackerLK</a></li>
