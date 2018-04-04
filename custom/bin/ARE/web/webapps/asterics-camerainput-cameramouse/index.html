@@ -478,8 +478,11 @@
 			Sorry, your browser does not support inline SVG.
 			</svg>
 			<p>
+			<button onclick="$('#unlockPattern').val('');" title="Clears the current activation pattern." class="button"> Clear pattern </button>
+			<p>
 			<label for="unlockPattern" title="Enter sequence of screen quadrant numbers, e.g. 1,2,3">Mouse Activation Pattern: </label>
 			<input id="unlockPattern" type="text" placeholder="1,2,4,3" value="1,2,4,3">
+			
 			<p>
 			<button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Apply and Start Model </button>
 	 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
