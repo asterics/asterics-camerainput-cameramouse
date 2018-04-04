@@ -24,124 +24,124 @@
 		//Define mapping between widget ids and property keys. This way both can be synced automatically.
 		var widgetIdToPropertyKeyMap = [
 			{
-				widgetId:"cameraSource",
+				widgetId:"#cameraSource",
 				componentKey:"XFacetrackerLK.1",
 				propertyKey:"cameraSelection"
 			},
 			{
-				widgetId:"speed",
+				widgetId:"#speed",
 				componentKey:"Slider.1",
 				propertyKey:"default"
 			},
 			{
-				widgetId:"averager",
+				widgetId:"#averager",
 				componentKey:"AveragerX",
 				propertyKey:"bufferSize"
 			},
 			{
-				widgetId:"averager",
+				widgetId:"#averager",
 				componentKey:"AveragerY",
 				propertyKey:"bufferSize"
 			},
 			{
-				widgetId:"deadzone",
+				widgetId:"#deadzone",
 				componentKey:"Deadzone.1",
 				propertyKey:"radius"
 			},
 			{
-				widgetId:"dwelltime",
+				widgetId:"#dwelltime",
 				componentKey:"DwellTimer",
 				propertyKey:"timePeriod"
 			},
 			//switch inputs
 			{
-				widgetId:"switch1Key",
+				widgetId:"#switch1Key",
 				componentKey:"KeySwitch1",
 				propertyKey:"keyCode"
 			},
 			{
-				widgetId:"switch2Key",
+				widgetId:"#switch2Key",
 				componentKey:"KeySwitch2",
 				propertyKey:"keyCode"
 			},
 			//CommandPanel configuration
 			{
-				widgetId:"cmdPanelBtn1",
+				widgetId:"#cmdPanelBtn1",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText1"
 			},
 			{
-				widgetId:"cmdPanelBtn2",
+				widgetId:"#cmdPanelBtn2",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText2"
 			},
 			{
-				widgetId:"cmdPanelBtn3",
+				widgetId:"#cmdPanelBtn3",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText3"
 			},
 			{
-				widgetId:"cmdPanelBtn4",
+				widgetId:"#cmdPanelBtn4",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText4"
 			},
 			{
-				widgetId:"cmdPanelBtn5",
+				widgetId:"#cmdPanelBtn5",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText5"
 			},
 			{
-				widgetId:"cmdPanelBtn5LaunchCmd",
+				widgetId:"#cmdPanelBtn5LaunchCmd",
 				componentKey:"Launch-OSK",
 				propertyKey:"defaultApplication"
 			},
 			{
-				widgetId:"cmdPanelBtn5LaunchArgs",
+				widgetId:"#cmdPanelBtn5LaunchArgs",
 				componentKey:"Launch-OSK",
 				propertyKey:"arguments"
 			},
 			{
-				widgetId:"cmdPanelBtn5CloseCmd",
+				widgetId:"#cmdPanelBtn5CloseCmd",
 				componentKey:"Launch-OSK",
 				propertyKey:"closeCmd"
 			},			
 			{
-				widgetId:"cmdPanelBtn6",
+				widgetId:"#cmdPanelBtn6",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText6"
 			},
 			{
-				widgetId:"cmdPanelBtn6LaunchCmd",
+				widgetId:"#cmdPanelBtn6LaunchCmd",
 				componentKey:"Launch-Custom",
 				propertyKey:"defaultApplication"
 			},
 			{
-				widgetId:"cmdPanelBtn6LaunchArgs",
+				widgetId:"#cmdPanelBtn6LaunchArgs",
 				componentKey:"Launch-Custom",
 				propertyKey:"arguments"
 			},
 			{
-				widgetId:"cmdPanelBtn6CloseCmd",
+				widgetId:"#cmdPanelBtn6CloseCmd",
 				componentKey:"Launch-Custom",
 				propertyKey:"closeCmd"
 			},
 			{
-				widgetId:"cmdPanelBtn7",
+				widgetId:"#cmdPanelBtn7",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText7"
 			},
 			{
-				widgetId:"cmdPanelBtn8",
+				widgetId:"#cmdPanelBtn8",
 				componentKey:"CommandPanel",
 				propertyKey:"cellText8"
 			},
 			{
-				widgetId:"unlockPattern",
+				widgetId:"#unlockPattern",
 				componentKey:"PatternRecognition",
 				propertyKey:"stateSequence"
 			},
 			{
-				widgetId:"unlockPattern",
+				widgetId:"#unlockPattern",
 				componentKey:"PatternVisualization",
 				propertyKey:"default"
 			}			
@@ -230,7 +230,7 @@
 			
 			//Update property values with values of input widgets.
 			for(var i=0;i<widgetIdToPropertyKeyMap.length;i++) {
-				setPropertyValueInXMLModel(widgetIdToPropertyKeyMap[i]["componentKey"],widgetIdToPropertyKeyMap[i]["propertyKey"],$("#"+widgetIdToPropertyKeyMap[i]["widgetId"]).val(),xmlDoc);				
+				setPropertyValueInXMLModel(widgetIdToPropertyKeyMap[i]["componentKey"],widgetIdToPropertyKeyMap[i]["propertyKey"],$(widgetIdToPropertyKeyMap[i]["widgetId"]).val(),xmlDoc);				
 			}
 			
 			//Convert back XML document to XML string.
@@ -247,7 +247,7 @@
 				var propVal=getPropertyValueFromXMLModel(widgetIdToPropertyKeyMap[i]["componentKey"],widgetIdToPropertyKeyMap[i]["propertyKey"],xmlDoc);
 				if(propVal!=undefined) {
 					console.log("Updating widget["+widgetIdToPropertyKeyMap[i]["widgetId"]+"]: "+propVal);
-					$("#"+widgetIdToPropertyKeyMap[i]["widgetId"]).val(propVal);					
+					$(widgetIdToPropertyKeyMap[i]["widgetId"]).val(propVal);					
 				}
 			}			
 		}		
