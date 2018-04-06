@@ -325,17 +325,17 @@
 			<p>
 			<h4>Mouse Movement</h4>
 			<label for="speed">Mouse Speed: </label>
-			<input title="Mouse speed" type="range" id="speed" value="60" min="1" max="100">
+			1 <input title="Mouse speed" type="range" id="speed" value="60" min="1" max="100"> 100
 			<p>
 			<label for="averager">Smoothing Degree: </label>
-			<input title="Smoothing Degree" type="range" id="averager" value="5" min="1" max="50">
+			1 <input title="Smoothing Degree" type="range" id="averager" value="5" min="1" max="50"> 50
 			<p>
 			<h4>Clicking</h4>
 			<label for="deadzone">Movement Radius: </label>
-			<input title="Movement Radius" type="range" id="deadzone" value="3" min="1" max="20">
+			1 <input title="Movement Radius" type="range" id="deadzone" value="3" min="1" max="20"> 20
 			<p>
 			<label for="dwelltime">Dwell Time [ms]: </label>
-			<input title="Dwell Time [ms]" type="range" id="dwelltime" value="500" min="100" max="5000">	
+			1 <input title="Dwell Time [ms]" type="range" id="dwelltime" value="500" min="100" max="5000"> 5000	
 			<h4>Mouse Activation Pattern</h4>
 			Click on screen quadrants to create a mouse activation pattern.
 			<p>
@@ -440,8 +440,17 @@
 			
 			<h3>Button Actions</h3>
 			<h4>On-Screen Keyboard</h4>
+			Install an On-Screen Keyboard of your choice and enter the path of the executable here.
+			<p>
+			Recommendations:
+			<ul>
+				<li><a href="https://support.microsoft.com/de-at/help/10762/windows-use-on-screen-keyboard">osk.exe</a>: Windows default On-Screen Keyboard.</li>
+				<li><a href="https://github.com/OptiKey/OptiKey/wiki">OptiKey</a>: On-Screen Keyboard optimized for Eyetracking.</li>
+				<li><a href="http://www.staggeredspeech.org/">Staggered Speech</a>: On-Screen Keyboard from Boston College.</li>
+				<li><a href="http://www.midastouch.org/">Midas Touch</a>: On-Screen Keyboard from Boston College.</li>				
+			</ul>
 			<label for="cmdPanelBtn5LaunchCmd">Launch Command: </label>
-			<input id="cmdPanelBtn5LaunchCmd" type="text" placeholder="osk" value="osk">
+			<input id="cmdPanelBtn5LaunchCmd" type="text" placeholder="osk.exe" value="osk.exe">
 			<label for="cmdPanelBtn5LaunchArgs">Launch Arguments: </label>
 			<input id="cmdPanelBtn5LaunchArgs" type="text" placeholder="e.g. URL">
 			<p>
