@@ -315,7 +315,7 @@
 		 		<button onclick="saveAsAutostart()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
 			<h3>General Settings</h3>
 			<p>
-			<label for="cameraSource">Choose Camera: </label>
+			<label for="cameraSource">Camera: </label>
 			<select id="cameraSource">
 			  <option value="0">First camera</option>
 			  <option value="1">Second camera</option>
@@ -323,18 +323,54 @@
 			  <option value="3">Fourth camera</option>
 			</select>
 			<p>
+			<h4>Mouse Movement</h4>
 			<label for="speed">Mouse Speed: </label>
 			<input title="Mouse speed" type="range" id="speed" value="60" min="1" max="100">
 			<p>
-			<label for="averager">Moving Average Values: </label>
-			<input title="Moving Average Values" type="range" id="averager" value="5" min="1" max="50">
+			<label for="averager">Smoothing Degree: </label>
+			<input title="Smoothing Degree" type="range" id="averager" value="5" min="1" max="50">
 			<p>
-			<label for="deadzone">Movement Deadzone: </label>
-			<input title="Movement Deadzone" type="range" id="deadzone" value="3" min="1" max="20">
+			<h4>Clicking</h4>
+			<label for="deadzone">Movement Radius: </label>
+			<input title="Movement Radius" type="range" id="deadzone" value="3" min="1" max="20">
 			<p>
 			<label for="dwelltime">Dwell Time [ms]: </label>
 			<input title="Dwell Time [ms]" type="range" id="dwelltime" value="500" min="100" max="5000">	
-			
+			<h4>Mouse Activation Pattern</h4>
+			Click on screen quadrants to create a mouse activation pattern.
+			<p>
+			<!-- Use svg to draw 4 quadrants to create unlock pattern  -->
+			<svg width="100" height="100">
+			  <a onclick="document.getElementById('unlockPattern').value+='1,'">
+			  <rect width="50" height="50" 
+			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
+			  <text x="17" y="35" font-size="32">1</text>
+			  </a>
+			  
+			  <a onclick="document.getElementById('unlockPattern').value+='2,'">
+			  <rect width="50" height="50" x="51"
+			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
+			  <text x="67" y="35" font-size="32">2</text>
+			  </a>
+			  
+			  <a onclick="document.getElementById('unlockPattern').value+='3,'">
+			  <rect width="50" height="50" y="51"
+			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
+			  <text x="17" y="85" font-size="32">3</text>
+			  </a>
+			  
+			  <a onclick="document.getElementById('unlockPattern').value+='4,'">
+			  <rect width="50" height="50" x="51" y="51"
+			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
+			  <text x="67" y="85" font-size="32">4</text>
+			  </a>
+			Sorry, your browser does not support inline SVG.
+			</svg>
+			<p>
+			<button onclick="$('#unlockPattern').val('');" title="Clears the current activation pattern." class="button"> Clear pattern </button>
+			<p>
+			<label for="unlockPattern" title="Enter sequence of screen quadrant numbers, e.g. 1,2,3">Mouse Activation Pattern: </label>
+			<input id="unlockPattern" type="text" placeholder="1,2,4,3" value="1,2,4,3">			
 			<h3>Switch Inputs</h3>
 			<label for="switch1Key">Switch1 Key: </label>
 			<select id="switch1Key">
@@ -402,9 +438,8 @@
 			  <option value="select7">Toggle Mouse On/Off</option>
 			</select>
 			
-			<h3>Command Panel</h3>
-			<h4>Button Actions</h4>
-			<h5>Button 5</h5>
+			<h3>Button Actions</h3>
+			<h4>On-Screen Keyboard</h4>
 			<label for="cmdPanelBtn5LaunchCmd">Launch Command: </label>
 			<input id="cmdPanelBtn5LaunchCmd" type="text" placeholder="osk" value="osk">
 			<label for="cmdPanelBtn5LaunchArgs">Launch Arguments: </label>
@@ -413,7 +448,7 @@
 			<label for="cmdPanelBtn5CloseCmd">Close Command: </label>
 			<input id="cmdPanelBtn5CloseCmd" type="text" placeholder="taskkill /im osk.exe" value="taskkill /im osk.exe">	
 			<p>
-			<h5>Button 6</h5>
+			<h4>Editor</h4>
 			<label for="cmdPanelBtn6LaunchCmd">Launch Command: </label>
 			<input id="cmdPanelBtn6LaunchCmd" type="text" placeholder="c:\windows\notepad.exe" value="c:\windows\notepad.exe">
 			<label for="cmdPanelBtn6LaunchArgs">Launch Arguments: </label>
@@ -421,8 +456,8 @@
 			<p>
 			<label for="cmdPanelBtn6CloseCmd">Close Command: </label>
 			<input id="cmdPanelBtn6CloseCmd" type="text" placeholder="" value="">
-			
-			<h4>Button Labels</h4>
+
+			<h3>Button Labels</h3>
 			<label for="cmdPanelBtn1">Button1 Text: </label>
 			<input id="cmdPanelBtn1" type="text" placeholder="Right Click" value="Right Click">
 			<p>
@@ -447,41 +482,7 @@
 			<label for="cmdPanelBtn8">Button8 Text: </label>
 			<input id="cmdPanelBtn8" type="text" placeholder="Mouse On/Off" value="Mouse On/Off">
 						
-			<h3>Mouse Activation Pattern</h3>
-			Click on screen quadrants to create a mouse activation pattern.
-			<p>
-			<!-- Use svg to draw 4 quadrants to create unlock pattern  -->
-			<svg width="100" height="100">
-			  <a onclick="document.getElementById('unlockPattern').value+='1,'">
-			  <rect width="50" height="50" 
-			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
-			  <text x="17" y="35" font-size="32">1</text>
-			  </a>
-			  
-			  <a onclick="document.getElementById('unlockPattern').value+='2,'">
-			  <rect width="50" height="50" x="51"
-			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
-			  <text x="67" y="35" font-size="32">2</text>
-			  </a>
-			  
-			  <a onclick="document.getElementById('unlockPattern').value+='3,'">
-			  <rect width="50" height="50" y="51"
-			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
-			  <text x="17" y="85" font-size="32">3</text>
-			  </a>
-			  
-			  <a onclick="document.getElementById('unlockPattern').value+='4,'">
-			  <rect width="50" height="50" x="51" y="51"
-			  style="fill:rgb(255,255,255);stroke-width:5;stroke:rgb(0,0,0)" />
-			  <text x="67" y="85" font-size="32">4</text>
-			  </a>
-			Sorry, your browser does not support inline SVG.
-			</svg>
-			<p>
-			<button onclick="$('#unlockPattern').val('');" title="Clears the current activation pattern." class="button"> Clear pattern </button>
-			<p>
-			<label for="unlockPattern" title="Enter sequence of screen quadrant numbers, e.g. 1,2,3">Mouse Activation Pattern: </label>
-			<input id="unlockPattern" type="text" placeholder="1,2,4,3" value="1,2,4,3">
+
 			
 			<p>
 			<button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Start Model </button>
