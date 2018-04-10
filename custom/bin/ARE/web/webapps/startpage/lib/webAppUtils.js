@@ -107,6 +107,34 @@ function storeFileFromWebserverOnARE(relFilePath, relFilePathARE, successCallbac
 		});
 }
 
+function updateModelPropertiesFromWidgets(modelInXML) {
+	//parse template modelInXML to document object
+	var xmlDoc = $.parseXML( modelInXML );
+	
+	//Update property values with values of input widgets.
+	for(var i=0;i<widgetIdToPropertyKeyMap.length;i++) {
+		setPropertyValueInXMLModel(widgetIdToPropertyKeyMap[i]["componentKey"],widgetIdToPropertyKeyMap[i]["propertyKey"],$(widgetIdToPropertyKeyMap[i]["widgetId"]).val(),xmlDoc);				
+	}
+	
+	//Convert back XML document to XML string.
+	modelInXML=xmlToString(xmlDoc);
+	return modelInXML;
+}
+
+function updateWidgetsFromModelProperties(modelInXML) {
+	//parse template modelInXML to document object
+	var xmlDoc = $.parseXML( modelInXML );
+	
+	//Update property values with values of input widgets.
+	for(var i=0;i<widgetIdToPropertyKeyMap.length;i++) {
+		var propVal=getPropertyValueFromXMLModel(widgetIdToPropertyKeyMap[i]["componentKey"],widgetIdToPropertyKeyMap[i]["propertyKey"],xmlDoc);
+		if(propVal!=undefined) {
+			console.log("Updating widget["+widgetIdToPropertyKeyMap[i]["widgetId"]+"]: "+propVal);
+			$(widgetIdToPropertyKeyMap[i]["widgetId"]).val(propVal);					
+		}
+	}			
+}
+
 /* generic callback handler */
 function Empty_successCallback(data, HTTPstatus) {}
 function errorCallback(HTTPstatus, AREerrorMessage) { alert("An error occured: "+AREerrorMessage+"\nPlease ensure to install AsTeRICS and start the ARE!"); }
