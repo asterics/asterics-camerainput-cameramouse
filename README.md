@@ -24,14 +24,6 @@ to build all the dependencies and start the ARE.
 
 You can also start the ARE using the ARE start-scripts in the ```build/merged/bin/ARE``` folder.
 
-# Build project
-
-Open a console or use your favorite IDE and run
-
-```ant build-all```
-
-to build all the dependencies and merge all files together in the ```build/merged/bin/ARE``` folder
-
 # Release project
 
 To create a native installer open a console and run
@@ -56,6 +48,12 @@ custom
       |- <custom model file>.acs
       |- ...
     |-profile
+    |- web
+      |- webapps
+        |- startpage
+          |- start.html
+        |- <your webapps folder>
+          |- index.html
 package
   |- linux
   |- windows
