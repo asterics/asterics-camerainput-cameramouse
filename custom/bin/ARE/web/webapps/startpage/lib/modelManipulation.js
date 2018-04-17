@@ -1,3 +1,19 @@
+/**
+ * @file
+ * This Javascript library provides functions that simplify manipulation of an AsTeRICS model in XML representation.
+ * The lib provides functions for setting and getting a property value.
+ * 
+ * @author Martin Deinhofer
+ * @version 0.1
+ */
+
+/**
+ * Sets the property componentKey.propertyKey to the given propertyValue.
+ * @param {string} componentKey - The component instance id.
+ * @param {string} propertyKey - The property key of the component.
+ * @param {string} propertyValue - The new value.
+ * @param {string} xmlDoc - The XML model as string to be updated. 
+ */
 function setPropertyValueInXMLModel(componentKey, propertyKey, propertyValue, xmlDoc) {
 	var commandPanel=xmlDoc.getElementsByTagName('component');
 
@@ -12,7 +28,7 @@ function setPropertyValueInXMLModel(componentKey, propertyKey, propertyValue, xm
 				var curProperty=commandPanelProperties.item(j);
 				if(curProperty.getAttribute("name")==propertyKey) {
 					curProperty.setAttribute("value",propertyValue);
-					console.log("Property ["+componentKey+"."+propertyKey+"="+propertyValue+"] set");											
+					//console.log("Property ["+componentKey+"."+propertyKey+"="+propertyValue+"] set");											
 					found=true;
 				}
 			}					
@@ -23,6 +39,13 @@ function setPropertyValueInXMLModel(componentKey, propertyKey, propertyValue, xm
 	}
 }
 
+/**
+ * Gets the property value of property componentKey.propertyKey.
+ * @param {string} componentKey - The component instance id.
+ * @param {string} propertyKey - The property key of the component.
+ * @param {string} xmlDoc - The XML model as string to be updated. 
+ * @returns {string} The property value.
+ */
 function getPropertyValueFromXMLModel(componentKey, propertyKey, xmlDoc) {
 	var commandPanel=xmlDoc.getElementsByTagName('component');
 
@@ -36,7 +59,7 @@ function getPropertyValueFromXMLModel(componentKey, propertyKey, xmlDoc) {
 				var curProperty=commandPanelProperties.item(j);
 				if(curProperty.getAttribute("name")==propertyKey) {
 					var propVal=curProperty.getAttribute("value");
-					console.log("Property ["+componentKey+"."+propertyKey+"="+propVal+"]");
+					//console.log("Property ["+componentKey+"."+propertyKey+"="+propVal+"]");
 					return propVal;
 				}
 			}					
@@ -46,6 +69,11 @@ function getPropertyValueFromXMLModel(componentKey, propertyKey, xmlDoc) {
 	return undefined;
 }
 
+/**
+ * Converts the given XML document object to an XML string.
+ * @param {Document} xmlData - The XML document object. 
+ * @returns {string} The XML document as string.
+ */
 function xmlToString(xmlData) { 
     var xmlString;
     //IE
