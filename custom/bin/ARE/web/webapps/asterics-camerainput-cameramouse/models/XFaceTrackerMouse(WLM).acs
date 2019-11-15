@@ -496,7 +496,7 @@ A ButtonGrid GUI elements allows to select the type of the next mouse click. </d
         <property name="executeOnPlatform" value="ALL" />
         <property name="executionMode" value="OPEN_URL" />
         <property name="defaultApplication" value="" />
-        <property name="arguments" value="http://asterics.github.io/AsTeRICS/webapps/startpage/#submenuSolutionDemos:asterics-camerainput-cameramouse" />
+        <property name="arguments" value="https://www.asterics.eu/webapps/asterics-camerainput-cameramouse/" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="false" />
